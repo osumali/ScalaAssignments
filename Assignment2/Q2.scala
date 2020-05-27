@@ -15,16 +15,33 @@ object Q2 {
 
   def bestTicketPrice(): Double = {
 
-    //let n be the factor by which the price changes. Thus the price will be given by the equation,
+    //let n be the factor by which the price changes. Thus the profit will be given by the equation,
     // revenue - cost i.e. [(15+5n)(120-20n)] - [500 + 3(120 - 20n)]
     // this equation can be simplified to -100n**2 + 360n + 940
     // once this is differentiated, we can obtain the first derivative i.e. -200n + 360
     // but the function(the profit function) is at it's maximum when the derivative is zero
     // that is when n = 360/200 = 1.8
 
-    val n: Double = 360.0/200
 
-    15 + 5 * n
+    var n: Double = 1.0
+
+    var prof: Double = (15+5*n)*(120 - 20*n) - (500 + 3*(120 - 20*n))
+    var i: Double = 1
+    var inter: Double = (15+5*n)*(120 - 20*n) - (500 + 3*(120 - 20*n))
+
+    while(n<2.0){
+      n=n+0.1
+
+      inter =( (15+5*n)*(120 - 20*n)) - (500 + 3*(120 - 20*n))
+
+      if (inter>prof){
+        prof = inter
+        i=n
+      }
+
+    }
+    
+    15 + 5 * i
   }
 
   def main(args: Array[String]){
